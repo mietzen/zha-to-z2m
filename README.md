@@ -30,7 +30,7 @@ For this to work, you need to:
 
 Afterward, connect to home assistant via `ssh` and run the commands below:
 
-## Start Migrating
+## Start Migration
 
 ```shell
 set -euo pipefail
@@ -83,7 +83,7 @@ done
 
 ## Post Migrating
 
-Your devices should be migrated, but you need to interview them again:
+Start Zigbee2MQTT, your devices should be migrated, but you need to interview them again:
 
 > Since zigbee2mqtt has no information about devices yet, they all are in unsupported state.
 > I then requested interview for each device. All details are retrieved from the device and it starts operating in Z2M.
