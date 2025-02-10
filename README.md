@@ -44,7 +44,7 @@ Afterward, connect to home assistant via `ssh` and run the commands below:
 ```shell
 set -euo pipefail
 
-# On my instalation the tables got postfix versions string like _v11 _v12 _v13.
+# On my instalation the tables got postfix version strings like: _v11 / _v12 / _v13.
 # We need to get the latest version, if no postfix is found return '':
 VERSION=$(sqlite3 /homeassistant/zigbee.db "SELECT COALESCE('_v' || MAX(CAST(substr(name, instr(name, '_v') + 2) AS INT)), '') FROM sqlite_master WHERE name LIKE '%_v%' AND type='table';")
 
