@@ -4,7 +4,7 @@
 \
 If you don't understand any of the code below, DON'T run this!\
 \
-Also don't do this when you are in a hurry — this might completely destroy your HA Zigbee setup.\
+Also don't do this when you are in a hurry — this might completely destroy your Home Assistant ZHA setup.\
 You have been warned... watch out for dragons...**
 
 # Migrate ZHA to Z2M
