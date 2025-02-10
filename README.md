@@ -35,6 +35,7 @@ For this to work, you need to:
  - [Install Mosquitto](https://github.com/home-assistant/addons/blob/master/mosquitto/DOCS.md)
  - [Deactivate ZHA](https://community.home-assistant.io/t/how-to-disable-zha-zigbee-home-automation/553061/21)
  - Start Zigbee2MQTT
+ - Check the Protocol and make sure it is fully started
  - Stop Zigbee2MQTT
 
 Afterwards, connect to home assistant via `ssh` and run the commands below:
