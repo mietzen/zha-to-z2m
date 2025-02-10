@@ -91,7 +91,12 @@ done
 - **DON'T** start Zigbee2MQTT
 - Read the output!
 - Read this guide again!
-- If you can't find the failure, uninstall / deactivate Zigbee2MQTT. Restart Home Assistant, ZHA should still be working.
+
+If you can't find the failure:
+- uninstall / deactivate Zigbee2MQTT
+- restart Home Assistant
+
+ZHA should still be working.
 
 ## After Migration
 
