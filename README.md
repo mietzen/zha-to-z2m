@@ -86,6 +86,13 @@ jq -c '.data.devices[]' /homeassistant/.storage/core.device_registry | while rea
 done
 ```
 
+### If anything went wrong:
+
+- **DON'T** start Zigbee2MQTT
+- Read the output!
+- Read this guide again!
+- If you can't find the failure, uninstall / deactivate Zigbee2MQTT. Restart Home Assistant, ZHA should still be working.
+
 ## After Migration
 
 Start Zigbee2MQTT, your devices should be migrated, but you need to interview them again:
