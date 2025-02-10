@@ -37,7 +37,7 @@ For this to work, you need to:
  - Start Zigbee2MQTT
  - Stop Zigbee2MQTT
 
-Afterward, connect to home assistant via `ssh` and run the commands below:
+Afterwards, connect to home assistant via `ssh` and run the commands below:
 
 ## Migration
 
