@@ -7,16 +7,29 @@ If you don't understand any of the code below, DON'T run this!\
 Also don't do this when you are in a hurry — this might completely destroy your Home Assistant ZHA setup.\
 You have been warned... watch out for dragons...**
 
+## Thanks to: 
+- [seidtgeist](https://github.com/seidtgeist)
+- [toine512](https://github.com/toine512)
+- [teal-bauer](https://github.com/teal-bauer)
+
+whose work this is based on.
+
 # Migrate ZHA to Z2M
 
-This script will migrate your [ZHA](https://www.home-assistant.io/integrations/zha/) device to [Zigbee2MQTT](https://www.zigbee2mqtt.io/) using `core.device_registry` and `zigbee.db` from Home Assistant and will generate/edit `devices.yaml`, `configuration.yaml`, and `database.db` in `/homeassistant/zigbee2mqtt`.
+This script will migrate your [ZHA](https://www.home-assistant.io/integrations/zha/) devices to [Zigbee2MQTT](https://www.zigbee2mqtt.io/) using the content of:
+- `/homeassistant/.store/core.device_registry`
+- `/homeassistant/zigbee.db`
+  
+It will generate/edit:
+- `/homeassistant/zigbee2mqtt/devices.yaml`
+- `/homeassistant/zigbee2mqtt/configuration.yaml`
+- `/homeassistant/zigbee2mqtt/database.db`
 
-It will also install [yq](https://github.com/mikefarah/yq).
+It will install:
+- [yq](https://github.com/mikefarah/yq)
 
-Thanks to [seidtgeist](https://github.com/seidtgeist), [toine512](https://github.com/toine512) and [teal-bauer](https://github.com/teal-bauer), whose work this is based on.
 
-Tested on arm64 (amd64 prepared but untested) on Home Assistant Operating System.
-
+This is tested on arm64 (amd64 prepared but untested) on Home Assistant Operating System.\
 On other Home Assistant setups this will only work **with** modifications!
 
 ## Before Migration
