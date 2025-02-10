@@ -25,7 +25,7 @@ It will generate/edit:
 - `/homeassistant/zigbee2mqtt/configuration.yaml`
 - `/homeassistant/zigbee2mqtt/database.db`
 
-This is tested on arm64 (amd64 prepared but untested) on Home Assistant Operating System.\
+This is tested on Home Assistant Operating System.\
 On other Home Assistant setups this will only work **with** modifications!
 
 ## Before Migration
