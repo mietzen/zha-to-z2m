@@ -37,28 +37,29 @@ set -euo pipefail
 
 cd /homeassistant
 
-# Install yq
+# Install yq (on arm64 and amd64)
 wget "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_$(arch | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')" -O /usr/bin/yq; chmod +x /usr/bin/yq
 
-# On my instalation the tables got postfix versions string like _v11 _v12 _v13, we need to get the latest version:
+# On my instalation the tables got postfix versions string like _v11 _v12 _v13.
+# We need to get the latest version, if no postfix is found return '':
 VERSION=$(sqlite3 zigbee.db "SELECT COALESCE('_v' || MAX(CAST(substr(name, instr(name, '_v') + 2) AS INT)), '') FROM sqlite_master WHERE name LIKE '%_v%' AND type='table';")
 
-# Append the Database:
+# Append the Z2M Database:
 sqlite3 zigbee.db "SELECT CONCAT('{"'"'"id"'"'": ', (ROW_NUMBER() OVER (ORDER BY d.ieee)) + 1, ', "'"'"type"'"'": "'"'"EndDevice"'"'", "'"'"ieeeAddr"'"'": "'"'"0x', REPLACE(d.ieee, ':', ''), '"'"'", "'"'"nwkAddr"'"'": ', d.nwk, '}') FROM devices${VERSION} d JOIN endpoints${VERSION} e ON d.ieee = e.ieee ;" >> /homeassistant/zigbee2mqtt/database.db
 
 # Get the ZHA Zigbee config:
 ZIGBEE_CONF=$(sqlite3 zigbee.db "SELECT backup_json FROM network_backups${VERSION} ORDER BY id DESC LIMIT 1 ;" | jq -c)
 
-# Parse and transform:
+# Parse and transform ZHA config:
 pan_id=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.pan_id' | awk '{print "0x" $1}')
 ext_pan_id=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.extended_pan_id' | awk -F: '{for (i=8; i>0; i--) printf "0x%s%s", $i, (i>1?", ":"")}')
 channel=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.channel')
 network_key=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.network_key.key' | awk -F: '{for (i=1; i<=NF; i++) printf "0x%s%s", $i, (i<NF?", ":"")}')
 
-# Delete the advanced key from the default configuration
+# Delete the advanced key from the default Z2M configuration
 yq -i 'del(.advanced)' /homeassistant/zigbee2mqtt/configuration.yaml
 
-# Append the parsed data:
+# Append the Z2M config:
 cat <<EOF >> /homeassistant/zigbee2mqtt/configuration.yaml
 advanced:
   pan_id: $pan_id
@@ -68,7 +69,7 @@ advanced:
 devices: devices.yaml
 EOF
 
-# Create the friendly device names:
+# Create the friendly device names for Z2M:
 jq -c '.data.devices[]' /homeassistant/.storage/core.device_registry | while read -r dev; do
     id=$(echo "$dev" | jq -r '.identifiers[0] // empty')
     [[ -z "$id" || "$(echo "$id" | jq -r '.[0]')" != "zha" ]] && continue
