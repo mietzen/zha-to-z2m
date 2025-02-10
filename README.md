@@ -33,7 +33,7 @@ On other Home Assistant setups this will only work **with** modifications!
 For this to work, you need to:
  - [Install Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt#installation), **BUT** don't start it!
  - [Install Mosquitto](https://github.com/home-assistant/addons/blob/master/mosquitto/DOCS.md)
- - [Stop ZHA](https://community.home-assistant.io/t/how-to-disable-zha-zigbee-home-automation/553061/21)
+ - [Deactivate ZHA](https://community.home-assistant.io/t/how-to-disable-zha-zigbee-home-automation/553061/21)
  - Start Zigbee2MQTT
  - Stop Zigbee2MQTT
 
