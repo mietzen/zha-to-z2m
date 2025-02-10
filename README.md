@@ -60,7 +60,7 @@ ext_pan_id=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.extended_pan_id' | awk -
 channel=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.channel')
 network_key=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.network_key.key' | awk -F: '{for (i=1; i<=NF; i++) printf "0x%s%s", $i, (i<NF?", ":"")}')
 
-# Delete the advanced key from the default Z2M configuration
+# Delete the advanced section from the default Z2M configuration
 sed -i '/^\s*advanced:/,/^[^[:space:]]/ { /^[^[:space:]]/!d; /^\s*advanced:/d }' /homeassistant/zigbee2mqtt/configuration.yaml
 
 # Append the Z2M config:
