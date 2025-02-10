@@ -25,10 +25,6 @@ It will generate/edit:
 - `/homeassistant/zigbee2mqtt/configuration.yaml`
 - `/homeassistant/zigbee2mqtt/database.db`
 
-It will install:
-- [yq](https://github.com/mikefarah/yq)
-
-
 This is tested on arm64 (amd64 prepared but untested) on Home Assistant Operating System.\
 On other Home Assistant setups this will only work **with** modifications!
 
@@ -48,9 +44,6 @@ Afterward, connect to home assistant via `ssh` and run the commands below:
 ```shell
 set -euo pipefail
 
-# Install yq (on arm64 and amd64)
-wget "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_$(arch | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')" -O /usr/bin/yq; chmod +x /usr/bin/yq
-
 # On my instalation the tables got postfix versions string like _v11 _v12 _v13.
 # We need to get the latest version, if no postfix is found return '':
 VERSION=$(sqlite3 /homeassistant/zigbee.db "SELECT COALESCE('_v' || MAX(CAST(substr(name, instr(name, '_v') + 2) AS INT)), '') FROM sqlite_master WHERE name LIKE '%_v%' AND type='table';")
@@ -68,7 +61,7 @@ channel=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.channel')
 network_key=$(echo "$ZIGBEE_CONF" | jq -r '.network_info.network_key.key' | awk -F: '{for (i=1; i<=NF; i++) printf "0x%s%s", $i, (i<NF?", ":"")}')
 
 # Delete the advanced key from the default Z2M configuration
-yq -i 'del(.advanced)' /homeassistant/zigbee2mqtt/configuration.yaml
+sed -i '/^\s*advanced:/,/^[^[:space:]]/ { /^[^[:space:]]/!d; /^\s*advanced:/d }' /homeassistant/zigbee2mqtt/configuration.yaml
 
 # Append the Z2M config:
 cat <<EOF >> /homeassistant/zigbee2mqtt/configuration.yaml
