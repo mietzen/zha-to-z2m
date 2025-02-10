@@ -19,7 +19,7 @@ Tested on arm64 (amd64 prepared but untested) on Home Assistant Operating System
 
 On other Home Assistant setups this will only work **with** modifications!
 
-## Before Migrating
+## Before Migration
 
 For this to work, you need to:
  - Install Zigbee2MQTT
@@ -30,7 +30,7 @@ For this to work, you need to:
 
 Afterward, connect to home assistant via `ssh` and run the commands below:
 
-## Start Migration
+## Migration
 
 ```shell
 set -euo pipefail
@@ -81,7 +81,7 @@ jq -c '.data.devices[]' /homeassistant/.storage/core.device_registry | while rea
 done
 ```
 
-## Post Migrating
+## After Migration
 
 Start Zigbee2MQTT, your devices should be migrated, but you need to interview them again:
 
