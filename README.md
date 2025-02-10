@@ -1,27 +1,27 @@
 # Migrate ZHA to Z2M
 
-This script will migrate your ZHA device to Ziqbee2MQTT using `core.device_registry` and `zigbee.db` from Home Assistant and will generate / edit `devices.yaml`, `configuration.yaml` and `database.db` in `/homeassistant/zigbee2mqtt`.
+This script will migrate your ZHA device to Zigbee2MQTT using `core.device_registry` and `zigbee.db` from Home Assistant and will generate/edit `devices.yaml`, `configuration.yaml`, and `database.db` in `/homeassistant/zigbee2mqtt`.
 
 It will install [yq](https://github.com/mikefarah/yq).
 
-Thanks to [seidtgeist](https://github.com/seidtgeist), [toine512](https://github.com/toine512) & [teal-bauer](https://github.com/teal-bauer)
+Thanks to [seidtgeist](https://github.com/seidtgeist), [toine512](https://github.com/toine512), and [teal-bauer](https://github.com/teal-bauer).
 
 ## !!! DISCLAIMER !!!
 
-**This worked for me and hopefully will work for you, but make Backups! Don't do this when you are in a hurry, this migth completly f*ck up you HA setup. If you don't understand any of the code below DON'T run this! So you have been warned... watch out for dragons...**
+**This worked for me and hopefully will work for you, but make backups! Don't do this when you are in a hurry—this might completely f*ck up your HA setup. If you don't understand any of the code below, DON'T run this! You have been warned... watch out for dragons...**
 
-**Tested on arm64 (RPI)** 
+**Tested on arm64 (RPI).** 
 
 ## Before Migrating
 
-For this to work you need to:
- - Install Ziqbee2MQTT
- - Install Mosquito
+For this to work, you need to:
+ - Install Zigbee2MQTT
+ - Install Mosquitto
  - Stop ZHA / Zigbee
- - Start Ziqbee2MQTT
- - Stop Ziqbee2MQTT
+ - Start Zigbee2MQTT
+ - Stop Zigbee2MQTT
 
-Afterwards login via `ssh` and run the script below:
+Afterward, log in via `ssh` and run the script below:
 
 ## Start Migrating
 
@@ -74,14 +74,14 @@ done
 
 ## Post Migrating
 
-Your Devices should be migrated, but you need to interview them again:
+Your devices should be migrated, but you need to interview them again:
 
 > Since zigbee2mqtt has no information about devices yet, they all are in unsupported state.
 > I then requested interview for each device. All details are retrieved from the device and it starts operating in Z2M.
 > 
 > The usual wisdom applies: first interview mains-powered devices that you know are routers, then all mains powered devices, then battery-powered ones. You will have to go and wake up each battery-powered device.
 
-If everthing worked, delte zha. If you want you can also delete `yq` with `rm /usr/bin/yq`.
+If everything worked, delete ZHA. If you want, you can also delete `yq` with `rm /usr/bin/yq`.
 
 ## Sources
 
