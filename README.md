@@ -1,23 +1,25 @@
 # Migrate ZHA to Z2M
 
-This script will migrate your ZHA device to Zigbee2MQTT using `core.device_registry` and `zigbee.db` from Home Assistant and will generate/edit `devices.yaml`, `configuration.yaml`, and `database.db` in `/homeassistant/zigbee2mqtt`.
+This script will migrate your [ZHA](https://www.home-assistant.io/integrations/zha/) device to [Zigbee2MQTT](https://www.zigbee2mqtt.io/) using `core.device_registry` and `zigbee.db` from Home Assistant and will generate/edit `devices.yaml`, `configuration.yaml`, and `database.db` in `/homeassistant/zigbee2mqtt`.
 
-It will install [yq](https://github.com/mikefarah/yq).
+It will also install [yq](https://github.com/mikefarah/yq).
 
-Thanks to [seidtgeist](https://github.com/seidtgeist), [toine512](https://github.com/toine512), and [teal-bauer](https://github.com/teal-bauer).
+Thanks to [seidtgeist](https://github.com/seidtgeist), [toine512](https://github.com/toine512) and [teal-bauer](https://github.com/teal-bauer) whom work this is based on.
 
 ## !!! DISCLAIMER !!!
 
 **This worked for me and hopefully will work for you, but make backups! Don't do this when you are in a hurry—this might completely f*ck up your HA setup. If you don't understand any of the code below, DON'T run this! You have been warned... watch out for dragons...**
 
-**Tested on arm64 (RPI).** 
+**Tested on arm64 (amd64 prepared but untested) on Home Assistant Operating System** 
+
+**On other Home Assistant setups this will only work with modifications** 
 
 ## Before Migrating
 
 For this to work, you need to:
  - Install Zigbee2MQTT
  - Install Mosquitto
- - Stop ZHA / Zigbee
+ - Stop ZHA
  - Start Zigbee2MQTT
  - Stop Zigbee2MQTT
 
@@ -26,6 +28,8 @@ Afterward, log in via `ssh` and run the script below:
 ## Start Migrating
 
 ```shell
+set -euo pipefail
+
 cd /homeassistant
 
 # Install yq
