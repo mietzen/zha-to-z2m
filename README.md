@@ -1,3 +1,5 @@
+# Migrate Home Assistant ZHA to Zigbee2MQTT
+
 ## !!! DISCLAIMER !!!
 
 **This worked for me and hopefully will work for you, but MAKE BACKUPS!\
@@ -7,14 +9,16 @@ If you don't understand any of the code below, DON'T run this!\
 Also don't do this when you are in a hurry — this might completely destroy your Home Assistant ZHA setup.\
 You have been warned... watch out for dragons...**
 
-## Thanks to: 
+------------------
+
+### Thanks to
 - [seidtgeist](https://github.com/seidtgeist)
 - [toine512](https://github.com/toine512)
 - [teal-bauer](https://github.com/teal-bauer)
 
 whose work this is based on.
 
-# Migrate ZHA to Z2M
+## Guide
 
 This script will migrate your [ZHA](https://www.home-assistant.io/integrations/zha/) devices to [Zigbee2MQTT](https://www.zigbee2mqtt.io/) using the content of:
 - `/homeassistant/.store/core.device_registry`
@@ -25,10 +29,14 @@ It will generate/edit:
 - `/homeassistant/zigbee2mqtt/configuration.yaml`
 - `/homeassistant/zigbee2mqtt/database.db`
 
-This is tested on Home Assistant Operating System.\
+This is tested on Home Assistant Operating System:
+- Z2M: 2.1.1-1
+- HA-Core: 2024.12.5
+- HA-OS: 14.1
+
 On other Home Assistant setups this will only work **with** modifications!
 
-## Before Migration
+### Before Migration
 
 For this to work, you need to:
  - [Install SSH & Web Terminal](https://community.home-assistant.io/t/home-assistant-community-add-on-ssh-web-terminal/33820)
@@ -41,7 +49,7 @@ For this to work, you need to:
 
 Afterwards, connect to home assistant via `ssh` or open the web terminal and run the commands below:
 
-## Migration
+### Migration
 
 ```shell
 set -euo pipefail
@@ -100,7 +108,7 @@ If you can't find the failure:
 
 ZHA should still be working.
 
-## After Migration
+### After Migration
 
 Start Zigbee2MQTT, your devices should be migrated, but you need to interview them again:
 
