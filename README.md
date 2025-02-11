@@ -31,7 +31,7 @@ On other Home Assistant setups this will only work **with** modifications!
 ## Before Migration
 
 For this to work, you need to:
- - [SSH & Web Terminal](https://community.home-assistant.io/t/home-assistant-community-add-on-ssh-web-terminal/33820)
+ - [Install SSH & Web Terminal](https://community.home-assistant.io/t/home-assistant-community-add-on-ssh-web-terminal/33820)
  - [Install Zigbee2MQTT](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt#installation), **BUT** don't start it!
  - [Install Mosquitto](https://github.com/home-assistant/addons/blob/master/mosquitto/DOCS.md)
  - [Deactivate ZHA](https://community.home-assistant.io/t/how-to-disable-zha-zigbee-home-automation/553061/21)
