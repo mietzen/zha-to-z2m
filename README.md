@@ -108,7 +108,7 @@ Start Zigbee2MQTT, your devices should be migrated, but you need to interview th
 > 
 > The usual wisdom applies: first interview mains-powered devices that you know are routers, then all mains powered devices, then battery-powered ones. You will have to go and wake up each battery-powered device.
 
-If everything worked, delete ZHA. If you want, you can also delete `yq` with `rm /usr/bin/yq`.
+If everything worked, delete ZHA.
 
 ## Sources
 
