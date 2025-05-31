@@ -91,7 +91,7 @@ jq -c '.data.devices[]' /homeassistant/.storage/core.device_registry | while rea
     mac=$(echo "$id" | jq -r '.[1]' | tr -d ':')
     name=$(echo "$dev" | jq -r '.name_by_user // .name' | sed "s/'/''/g")
     
-    echo "'0x$mac':" >> devices.yaml
+    echo "'0x$mac':" >> /homeassistant/zigbee2mqtt/devices.yaml
     echo "    friendly_name: '$name'" >> /homeassistant/zigbee2mqtt/devices.yaml
 done
 ```
